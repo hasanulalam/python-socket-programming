@@ -28,7 +28,7 @@ request = [request_type, arg_val,' ', poly]
 s.connect(('', port))
 s.send(request)
 recieve = s.recv(BUFFSIZE)
-if (recieve[0] == 'E' || recieve[0] == 'S'):
+if (recieve[0] == 'E' or recieve[0] == 'S'):
     print(recieve)
 else if(recive[0] == 'X')
     print(recieve)
