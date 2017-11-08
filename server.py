@@ -36,7 +36,7 @@ while True:
             c.send(error)
             print("Shutting down server.")
             c.close()
-        else if !(all(isinstance(item, int) for item in request[4])):
+        elif !(all(isinstance(item, int) for item in request[4])):
             error = ['X', "Invalid number format."]
             c.send(error)
             print("Shutting down server.")
@@ -49,13 +49,13 @@ while True:
             c.send(success)
             print ("Server finished. Shutting down.")
             c.close()
-    else if request[0] == 'X':
+    elif request[0] == 'X':
         if(len(request) < 7 or len(request) > 7):
             error = ['X', "Missing Arguments"]
             c.send(error)
             print("Shutting down server.")
             c.close()
-        else if !(all(isinstance(item, int) for item in request[5])):
+        elif !(all(isinstance(item, int) for item in request[5])):
             error = ['X', "Invalid number format."]
             c.send(error)
             print("Shutting down server.")
