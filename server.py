@@ -36,7 +36,7 @@ while True:
             c.send(error)
             print("Shutting down server.")
             c.close()
-        elif !(all(isinstance(item, int) for item in request[4])):
+        elif not(all(isinstance(item, int) for item in request[4])):
             error = ['X', "Invalid number format."]
             c.send(error)
             print("Shutting down server.")
