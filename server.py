@@ -30,7 +30,7 @@ while True:
     c, addr = s.accept()
     print 'Got connection from', addr
     request = c.recv(BUFFSIZE)
-    if request[0] = 'E':
+    if request[0] == 'E':
         if(len(request) < 4 || len(request) > 4):
             error = ['X', "Missing arguments."]
             c.send(error)
@@ -49,7 +49,7 @@ while True:
             c.send(success)
             print ("Server finished. Shutting down.")
             c.close()
-    else if request[0] = 'X':
+    else if request[0] == 'X':
         if(len(request) < 7 || len(request) > 7):
             error = ['X', "Missing Arguments"]
             c.send(error)
