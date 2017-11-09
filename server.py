@@ -48,7 +48,7 @@ while True:
         else:
             x = request[1]
             poly = request[3]
-            temp = polynominals.evaluate(x, poly)
+            temp = polynomials.evaluate(x, poly)
             success = ['E', temp]
             #c.send(success)
             pickle.dump(success, open("save.p", "wb"))
