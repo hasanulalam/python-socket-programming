@@ -32,8 +32,8 @@ a = 3
 b = 2
 tol = 0.00000000001
 
-request = [request_type, arg_val,' ', poly]
-#request = [request_type, a, ' ', b, ' ', poly, ' ', tol]
+#request = [request_type, arg_val,' ', poly]
+request = [request_type, a, ' ', b, ' ', poly, ' ', tol]
 s.connect((host, port))
 
 pickle.dump(request, open("save.p", "wb"));
