@@ -6,7 +6,7 @@ BUFFSIZE = 1024
 print "Starting server program."
 
 #Create Sockets
-try:
+try
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     print "Socket successfully created."
 except socket.error as err:
@@ -14,7 +14,7 @@ except socket.error as err:
 
 # Define the port to be used.
 port = 12311
-host = ''
+host = socket.gethostname()
 
 '''
 #Get IP of host.

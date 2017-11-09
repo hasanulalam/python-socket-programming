@@ -10,7 +10,7 @@ try:
 except socket.error as err:
     print "Socket creation failed with error %s" %(err)
 
-host = ''
+host = 'cs3.kennesaw.edu'
 port = 12311
 
 
