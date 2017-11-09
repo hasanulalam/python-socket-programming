@@ -14,17 +14,18 @@ except socket.error as err:
 
 # Define the port to be used.
 port = 12311
+host = ''
 
 '''
 #Get IP of host.
 try:
-    host = socket.gethostname('cs3.kennesaw.edu')
+    host = socket.gethostname()
 except socket.gaierror:
     print "There was an error resolving the host."          #Error control for host
     sys.exit()
 '''
 
-s.bind(('', port))
+s.bind((host, port))
 
 s.listen(5)
 while True:

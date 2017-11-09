@@ -3,9 +3,17 @@ import pickle
 
 BUFFSIZE = 1024
 print "Starting client prog"
-s = socket.socket()
-host = 'cs3.kennesaw.edu'
+
+try:
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    print "Socket successfully created."
+except socket.error as err:
+    print "Socket creation failed with error %s" %(err)
+
+host = ''
 port = 12311
+
+
 
 '''
 Variables for data manipulation.
@@ -26,7 +34,7 @@ tol = 0.00000000001
 
 request = [request_type, arg_val,' ', poly]
 #request = [request_type, a, ' ', b, ' ', poly, ' ', tol]
-s.connect(('', port))
+s.connect((host, port))
 
 pickle.dump(request, open("save.p", "wb"));
 
