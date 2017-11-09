@@ -1,4 +1,4 @@
-__author__ = 'Myname'
+__author__ = 'kshitijbantupalli'
 
 
 """
@@ -46,4 +46,3 @@ def bisection(a, b, poly, tolerance):
             return bisection(mid, b, poly, tolerance)
         else:
             return bisection(a, mid, poly, tolerance)
-

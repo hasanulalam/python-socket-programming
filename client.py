@@ -1,10 +1,11 @@
 import socket
+import pickle
 
 BUFFSIZE = 1024
 print "Starting client prog"
 s = socket.socket()
 host = 'cs3.kennesaw.edu'
-port = 12321
+port = 12311
 
 '''
 Variables for data manipulation.
@@ -26,10 +27,13 @@ tol = 0.00000000001
 request = [request_type, arg_val,' ', poly]
 #request = [request_type, a, ' ', b, ' ', poly, ' ', tol]
 s.connect(('', port))
-s.send(request)
-recieve = s.recv(BUFFSIZE)
+
+pickle.dump(request, open("save.p", "wb"));
+
+#s.send(request)
+recieve = pickle.load(open("save.p", "rb"))
 if (recieve[0] == 'E' or recieve[0] == 'S'):
     print(recieve)
-elif (recive[0] == 'X')
+elif (recieve[0] == 'X'):
     print(recieve)
 s.close
