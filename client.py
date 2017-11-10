@@ -50,7 +50,7 @@ pickle.dump(request, open("save.p", "wb"));
 #s.send(request)
 recieve = pickle.load(open("save.p", "rb"))
 if (recieve[0] == 'E' or recieve[0] == 'S'):
-    print(recieve)
+    print(*recieve, sep='')
 elif (recieve[0] == 'X'):
-    print(recieve)
+    print(*recieve, sep='')
 s.close
