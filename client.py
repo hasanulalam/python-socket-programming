@@ -1,3 +1,12 @@
+'''
+#
+# Kshitij Bantupalli
+# CS 6025 : Assignment 6
+#
+#   CLIENT SIDE
+#
+#
+'''
 import socket
 import pickle
 
