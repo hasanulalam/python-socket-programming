@@ -48,9 +48,9 @@ s.connect((host, port))
 with open('request.pickle', 'wb') as f:
     pickle.dump(request, f, pickle.HIGHEST_PROTOCOL)
 
-with open('response.pickle', 'rb') as g:
-    recieve = pickle.load(g)
-    
+with open('response.pickle', 'rb') as f:
+    recieve = pickle.load(f)
+
 if (recieve[0] == 'E' or recieve[0] == 'S'):
     print ''.join(map(str, data))
 elif (recieve[0] == 'X'):

@@ -54,14 +54,14 @@ while True:
         '''
         if(len(request) < 4 or len(request) > 4):
             response = ['X', "Missing arguments."]
-            with open('response.pickle', 'wb') as g:
-                pickle.dump(response, g, pickle.HIGHEST_PROTOCOL)
+            with open('response.pickle', 'wb') as f:
+                pickle.dump(response, f, pickle.HIGHEST_PROTOCOL)
             print("Shutting down server.")
             c.close()
         elif not(all(isinstance(item, int) for item in request[3])):
             response = ['X', "Invalid number format."]
-            with open('response.pickle', 'wb') as g:
-                    pickle.dump(reponse, g, pickle.HIGHEST_PROTOCOL)
+            with open('response.pickle', 'wb') as f:
+                    pickle.dump(reponse, f, pickle.HIGHEST_PROTOCOL)
             pickle.dump(error, open("save.p", "wb"))
             print("Shutting down server.")
             c.close()
@@ -70,8 +70,8 @@ while True:
             poly = request[3]
             temp = polynomials.evaluate(x, poly)
             response = ['E', temp]
-            with open('response.pickle', 'wb') as g:
-                pickle.dump(response, g, pickle.HIGHEST_PROTOCOL)
+            with open('response.pickle', 'wb') as f:
+                pickle.dump(response, f, pickle.HIGHEST_PROTOCOL)
             print ("Server finished. Shutting down.")
             c.close()
     elif request[0] == 'X':
@@ -80,14 +80,14 @@ while True:
         '''
         if(len(request) < 7 or len(request) > 7):
             response = ['X', "Missing Arguments"]
-            with open('response.pickle', 'wb') as g:
-                pickle.dump(response, g, pickle.HIGHEST_PROTOCOL)
+            with open('response.pickle', 'wb') as f:
+                pickle.dump(response, f, pickle.HIGHEST_PROTOCOL)
             print("Shutting down server.")
             c.close()
         elif not(all(isinstance(item, int) for item in request[5])):
             response = ['X', "Invalid number format."]
-            with open('response.pickle', 'wb') as g:
-                pickle.load(response, g, pickle.HIGHEST_PROTOCOL)
+            with open('response.pickle', 'wb') as f:
+                pickle.load(response, f, pickle.HIGHEST_PROTOCOL)
             print("Shutting down server.")
             c.close()
         else:
@@ -97,8 +97,8 @@ while True:
             tol = request[7]
             temp = polynomials.bisection(a, b, poly, tol)
             response = ['S', temp]
-            with open('response.pickle', 'wb') as g:
-                pickle.load(response, g, pickle.HIGHEST_PROTOCOL)
+            with open('response.pickle', 'wb') as f:
+                pickle.load(response, f, pickle.HIGHEST_PROTOCOL)
             print("Server finished. Shutting down.")
             c.close()
     else:
@@ -107,7 +107,7 @@ while True:
         '''
         temp = "Please enter correct request type."
         response = ['X', temp]
-        with open('response.pickle', 'wb') as g:
-            pickle.load(response, g, pickle.HIGHEST_PROTOCOL)
+        with open('response.pickle', 'wb') as f:
+            pickle.load(response, f, pickle.HIGHEST_PROTOCOL)
         print("Shutting down server.")
         c.close()
