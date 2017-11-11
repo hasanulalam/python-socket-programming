@@ -52,7 +52,7 @@ with open('response.pickle', 'rb') as f:
     recieve = pickle.load(f)
 
 if (recieve[0] == 'E' or recieve[0] == 'S'):
-    print ''.join(map(str, data))
+    print ''.join(map(str, recieve))
 elif (recieve[0] == 'X'):
-    print ''.join(map(str, data))
+    print ''.join(map(str, recieve))
 s.close
