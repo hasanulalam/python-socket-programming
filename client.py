@@ -45,12 +45,14 @@ tol = 0.00000000001
 request = [request_type, a, ' ', b, ' ', poly, ' ', tol]
 s.connect((host, port))
 
-pickle.dump(request, open("save.p", "wb"));
+with open('request.pickle', 'wb') as f:
+    pickle.dump(request, f, pickle.HIGHEST_PROTOCOL)
 
-#s.send(request)
-recieve = pickle.load(open("save.p", "rb"))
+with open('response.pickle', 'rb') as g:
+    recieve = pickle.load(g)
+    
 if (recieve[0] == 'E' or recieve[0] == 'S'):
-    print(*recieve, sep='')
+    print ''.join(map(str, data))
 elif (recieve[0] == 'X'):
-    print(*recieve, sep='')
+    print ''.join(map(str, data))
 s.close

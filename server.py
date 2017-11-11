@@ -46,31 +46,32 @@ s.listen(5)
 while True:
     c, addr = s.accept()
     print 'Got connection from', addr
-    request = pickle.load(open("save.p", "rb"))                                 #Recieving the request from the client.
+    with open('request.pickle', 'rb') as f:
+        request = pickle.load(f)                                 #Recieving the request from the client.
     if request[0] == 'E':
         '''
         Error checking for request type 'E'. I've tested for missing arguments and non integer Polynomials.
         '''
         if(len(request) < 4 or len(request) > 4):
-            error = ['X', "Missing arguments."]
-            pickle.dump(error, open("save.p", "wb"))
+            response = ['X', "Missing arguments."]
+            with open('response.pickle', 'wb') as g:
+                pickle.dump(response, g, pickle.HIGHEST_PROTOCOL)
             print("Shutting down server.")
             c.close()
         elif not(all(isinstance(item, int) for item in request[3])):
-            error = ['X', "Invalid number format."]
+            response = ['X', "Invalid number format."]
+            with open('response.pickle', 'wb') as g:
+                    pickle.dump(reponse, g, pickle.HIGHEST_PROTOCOL)
             pickle.dump(error, open("save.p", "wb"))
             print("Shutting down server.")
             c.close()
-        '''
-            Error checking ends.
-        '''
         else:
             x = request[1]
             poly = request[3]
             temp = polynomials.evaluate(x, poly)
-            success = ['E', temp]
-            #c.send(success)
-            pickle.dump(success, open("save.p", "wb"))
+            response = ['E', temp]
+            with open('response.pickle', 'wb') as g:
+                pickle.dump(response, g, pickle.HIGHEST_PROTOCOL)
             print ("Server finished. Shutting down.")
             c.close()
     elif request[0] == 'X':
@@ -78,29 +79,26 @@ while True:
         Error checking for request type 'X'. I've tested for missing arguments and non integer polynomials.
         '''
         if(len(request) < 7 or len(request) > 7):
-            error = ['X', "Missing Arguments"]
-            #c.send(error)
-            pickle.dump(error, open("save.p", "wb"))
+            response = ['X', "Missing Arguments"]
+            with open('response.pickle', 'wb') as g:
+                pickle.dump(response, g, pickle.HIGHEST_PROTOCOL)
             print("Shutting down server.")
             c.close()
         elif not(all(isinstance(item, int) for item in request[5])):
-            error = ['X', "Invalid number format."]
-            #c.send(error)
-            pickle.dump(error, open("save.p", "wb"))
+            response = ['X', "Invalid number format."]
+            with open('response.pickle', 'wb') as g:
+                pickle.load(response, g, pickle.HIGHEST_PROTOCOL)
             print("Shutting down server.")
             c.close()
-        '''
-            Error checking ends.
-        '''
         else:
             a = request[1]
             b = request[3]
             poly = request[5]
             tol = request[7]
             temp = polynomials.bisection(a, b, poly, tol)
-            success = ['S', temp]
-            #c.send(success)
-            pickle.dump(success, open("save.p","wb"))
+            response = ['S', temp]
+            with open('response.pickle', 'wb') as g:
+                pickle.load(response, g, pickle.HIGHEST_PROTOCOL)
             print("Server finished. Shutting down.")
             c.close()
     else:
@@ -108,8 +106,8 @@ while True:
             Error checking for wrong request type.
         '''
         temp = "Please enter correct request type."
-        error = ['X', temp]
-        #c.send(error)
-        pickle.dump(error, open("save.p", "wb"))
+        response = ['X', temp]
+        with open('response.pickle', 'wb') as g:
+            pickle.load(response, g, pickle.HIGHEST_PROTOCOL)
         print("Shutting down server.")
         c.close()
