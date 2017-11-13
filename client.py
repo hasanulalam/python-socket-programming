@@ -8,7 +8,8 @@
 #
 '''
 import socket
-import pickle
+import cPickle as pickle
+import time
 
 BUFFSIZE = 1024
 print "Starting client prog"
@@ -19,8 +20,8 @@ try:
 except socket.error as err:
     print "Socket creation failed with error %s" %(err)
 
-host = 'cs3.kennesaw.edu'
-port = 12311
+host = ''
+port = 12321
 
 
 
@@ -34,22 +35,33 @@ b = value b for bisection.
 tol = tolerance in bisection.
 '''
 
-request_type = 'E'
-arg_val = 1.0
-poly = [631,232,223,222]
-a = 3
+request_type = 'S'
+arg_val = 1
+poly = [-945, 1689, -950, 230, -25, 1]
+a = 0
 b = 2
-tol = 0.00000000001
+tol = 0.0000000000000015
 
+'''
+ENSURE CORRECT REQUEST TYPE
+'''
 #request = [request_type, arg_val,' ', poly]
 request = [request_type, a, ' ', b, ' ', poly, ' ', tol]
 s.connect((host, port))
 
-with open('request.pickle', 'wb') as f:
-    pickle.dump(request, f, pickle.HIGHEST_PROTOCOL)
 
-with open('response.pickle', 'rb') as f:
-    recieve = pickle.load(f)
+with open ("save.p", 'wb') as o:
+    pickle.dump(request, o)
+
+'''
+PUTTING THE CLIENT PROGRAM TO SLEEP TO ENSURE, SERVER HAS TIME TO WRITE TO THE FILE.
+'''
+time.sleep(2)
+
+with open("response.p", 'rb') as o:
+    recieve = pickle.load(o)
+
+
 
 if (recieve[0] == 'E' or recieve[0] == 'S'):
     print ''.join(map(str, recieve))
